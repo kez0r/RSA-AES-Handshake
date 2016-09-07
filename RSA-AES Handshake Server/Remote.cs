@@ -9,6 +9,7 @@ namespace RSA_AES_Handshake_Server
 {
     public class Remote
     {
+        ///<summary>Attempt RSA encrypted handshake to exchange AES key/iv for further communication.</summary>
         public static bool KeyExchangeHandshake(TcpClient client) 
         {
             try
@@ -40,21 +41,25 @@ namespace RSA_AES_Handshake_Server
                 //decrypt handshake response with session keys
                 var hsResponse = Crypto.AESDecryptFromBytes(Convert.FromBase64String(hsEncData), Crypto.aesSessionKey, Crypto.aesSessionIV);
 
-                if (hsResponse != "challenge")
+                //check 'handshake challenge' and respond with status
+                if (hsResponse == "challenge")
                 {
+                    var hsStatus = Convert.ToBase64String(Crypto.AESEncryptToBytes("accepted", Crypto.aesSessionKey, Crypto.aesSessionIV)); //encrypt success response
+                    
+                    byte[] outStream = Encoding.UTF8.GetBytes(hsStatus);
+                    WriteNetworkStream(outStream, networkStream);
+
+                    Console.WriteLine("Server >> (TCP) Handshake Challenge Accepted!");
+                    return true;
+                }
+                else
+                {
+                    byte[] outStream = Encoding.UTF8.GetBytes("failed");
+                    WriteNetworkStream(outStream, networkStream);
+                    
                     Console.WriteLine("Server >> (TCP) Handshake Challenge Rejected!");
                     return false;
                 }
-
-                //encrypt 'handshake challenge' status 
-                var hsStatus = Convert.ToBase64String(Crypto.AESEncryptToBytes("accepted", Crypto.aesSessionKey, Crypto.aesSessionIV));
-
-                //transmit 'handshake challenge' status to client
-                byte[] outStream = Encoding.UTF8.GetBytes(hsStatus);
-                WriteNetworkStream(outStream, networkStream);
-
-                Console.WriteLine("Server >> (TCP) Handshake Challenge Accepted!");
-                return true;
             }
             catch (Exception e)
             {
@@ -62,7 +67,8 @@ namespace RSA_AES_Handshake_Server
                 return false;
             }
         }
-        
+
+        ///<summary>Transmit [data] to [ip]:[port] using TCP socket.</summary>
         public static void TCPShellListener(int port = 8888, bool recursion = true) 
         {
             //create and start tcp listener
@@ -111,7 +117,7 @@ namespace RSA_AES_Handshake_Server
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Server >> (TCP) Exception encountered! Closing connection..."); //TODO: exception counter w/ threshold to stop recursions after [x] errors
+                    Console.WriteLine("Server >> (TCP) Exception encountered! Closing connection...");
                     Console.WriteLine("Server >> (TCP) Details: {0}", ex);
                     break;
                 }
