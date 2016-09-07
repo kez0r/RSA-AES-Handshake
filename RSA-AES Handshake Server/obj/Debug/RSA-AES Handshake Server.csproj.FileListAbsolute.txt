@@ -1,0 +1,9 @@
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\bin\Debug\RSA-AES Handshake Server.exe.config
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA_AES_Handshake_Server.Properties.Resources.resources
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA-AES Handshake Server.csproj.GenerateResource.Cache
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\bin\Debug\RSA-AES Handshake Server.exe
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\bin\Debug\RSA-AES Handshake Server.pdb
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA-AES Handshake Server.csprojResolveAssemblyReference.cache
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA_AES_Handshake_Server.FrmMain.resources
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA-AES Handshake Server.exe
+C:\Users\Shawn\Documents\Visual Studio 2013\Projects\RSA-AES Handshake\RSA-AES Handshake Server\obj\Debug\RSA-AES Handshake Server.pdb
